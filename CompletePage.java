@@ -14,7 +14,7 @@ public class CompletePage {
 		
 		if ("Completed".equals(driver.findElement(By.cssSelector("span.redText")).getText()) ||
 		"in progress".equals(driver.findElement(By.cssSelector("span.redText")).getText())){
-			System.out.println("Match!!!");
+			System.out.println("Complete page - Match!!!");
 		}else{
 			System.out.println("Error!!!");
 		}

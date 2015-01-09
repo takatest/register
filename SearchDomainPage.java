@@ -63,8 +63,4 @@ public class SearchDomainPage extends Page {
 
 		return domainName;
 	}
-	
-	
-	
-
 }

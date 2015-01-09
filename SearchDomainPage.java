@@ -1,5 +1,8 @@
 package RegisterdomainName;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -49,12 +52,19 @@ public class SearchDomainPage extends Page {
 	 * create Domain name
 	 */
 	public String CreateDomainName(String domainSpace) {
+
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+		String today = formatter.format( new java.util.Date() );
+
+		System.out.println("today " + today);
 		
-		int num = (int) (Math.random() * 50 + 1);
-		String domainName = "takatakatest" + num;
-		domainName = domainName + String.valueOf(num)+ domainSpace;
+		int unique_num = (int) (Math.random() * 50 + 1);
+		String domainName = "takatest" + today + unique_num + domainSpace;
 
 		return domainName;
 	}
+	
+	
+	
 
 }

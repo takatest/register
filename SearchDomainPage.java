@@ -45,7 +45,6 @@ public class SearchDomainPage extends Page {
 		// // is available
 		WebElement we = driver.findElement(btn);
 		we.click(); // add button
-
 	}
 
 	/* 
@@ -56,11 +55,10 @@ public class SearchDomainPage extends Page {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
 		String today = formatter.format( new java.util.Date() );
 
-		System.out.println("today " + today);
-		
 		int unique_num = (int) (Math.random() * 50 + 1);
 		String domainName = "takatest" + today + unique_num + domainSpace;
 
+		System.out.println("Domain name =" + domainName);
 		return domainName;
 	}
 }

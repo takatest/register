@@ -13,9 +13,13 @@ public class PaymentPage {
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("paymentFormSection")));
 
 		driver.get(baseUrl + "/cc/order/payment/index");
-	    driver.findElement(By.xpath("(//input[@name='eccsid'])[2]")).click();
-	    driver.findElement(By.xpath("//div[2]/div[5]/span/input")).clear();
-	    driver.findElement(By.xpath("//div[2]/div[5]/span/input")).sendKeys("123");
+	    driver.findElement(By.xpath("(//input[@name='eccsid'])[1]")).click();
+//	    driver.findElement(By.xpath("//div[2]/div[5]/span/input")).clear();
+//	    driver.findElement(By.xpath("//div[2]/div[5]/span/input")).sendKeys("123");
+
+	    driver.findElement(By.name("cardverificationcode1")).clear();
+	    driver.findElement(By.name("cardverificationcode1")).sendKeys("123");
+
 	    driver.findElement(By.id("tandc")).click();
 	    driver.findElement(By.cssSelector("div.a-button-flexi")).click();
 	    

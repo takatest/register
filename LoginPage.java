@@ -20,7 +20,7 @@ public class LoginPage extends Page {
 			System.out.println("Enter Hosting page");
 			driver.findElement(By.cssSelector("button.btn-continue")).click();
 		}
-		 WebDriverWait wait = new WebDriverWait(driver, 30);
+		 WebDriverWait wait = new WebDriverWait(driver, 50);
 		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("log_username")));
 			
 		driver.findElement(By.id("log_username")).clear();
@@ -29,4 +29,5 @@ public class LoginPage extends Page {
 		driver.findElement(By.id("log_password")).sendKeys(password);
 	    driver.findElement(By.cssSelector("div.midWrapperForm1.midWrapperForm1-override > div.divGroup > span.account-nform-frame > span.form-button.submit > button[name=\"submit\"]")).click();
 	}
+	
 }

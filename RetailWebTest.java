@@ -20,7 +20,7 @@ public class RetailWebTest {
 	private String 							myaccount;				// my account			property
 	private String 							password;				// my account password	property
     private static int						domain_num = 2;			// number of domain
-	private static String[] 				domain_space = {".com",".org",".org",".biz",".info",".melbourne"};// domain space
+	private static String[] 				domain_space = {".info",".melbourne",".org",".biz",".info",".melbourne"};// domain space
     private static SearchDomainPage 		searchPage;				// search domain page
     
     private static LoginPage 	 			loginPage;				// login page

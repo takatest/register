@@ -30,4 +30,14 @@ public class LoginPage extends Page {
 	    driver.findElement(By.cssSelector("div.midWrapperForm1.midWrapperForm1-override > div.divGroup > span.account-nform-frame > span.form-button.submit > button[name=\"submit\"]")).click();
 	}
 	
+	// login to my account from Main page on the top right corner
+	public void normalloginmyaccount(WebDriver driver, String myaccount, String passsword){
+	    driver.findElement(By.linkText("Login")).click();
+	    driver.findElement(By.id("username")).clear();
+	    driver.findElement(By.id("username")).sendKeys(myaccount);
+	    driver.findElement(By.id("password")).clear();
+	    driver.findElement(By.id("password")).sendKeys(passsword);
+	    driver.findElement(By.id("submit")).click();
+	}
+	
 }

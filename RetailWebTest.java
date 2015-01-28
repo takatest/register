@@ -19,7 +19,7 @@ public class RetailWebTest {
 	private FirefoxDriver 					driver;					// firefox driver
 	private String 							myaccount;				// my account			property
 	private String 							password;				// my account password	property
-    private static int						domain_num = 2;			// number of domain
+    private static int						domain_num = 1;			// number of domain
 	private static String[] 				domain_space = {".info",".melbourne",".org",".biz",".info",".melbourne"};// domain space
     private static SearchDomainPage 		searchPage;				// search domain page
     

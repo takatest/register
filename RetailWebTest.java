@@ -20,7 +20,7 @@ public class RetailWebTest {
 	private String 							myaccount;				// my account			property
 	private String 							password;				// my account password	property
     private static int						domain_num = 1;			// number of domain
-	private static String[] 				domain_space = {".info",".melbourne",".org",".biz",".info",".melbourne"};// domain space
+	private static String[] 				domain_space = {".com",".com",".org",".melborne",".info",".camera"};// domain space
     private static SearchDomainPage 		searchPage;				// search domain page
     
     private static LoginPage 	 			loginPage;				// login page
@@ -32,7 +32,7 @@ public class RetailWebTest {
     
     
 	private String baseUrl = "https://stage.melbourneit.com.au/";		//URL stage
-//	private Sstring baseUrl = "https://www.melbourneit.com.au/";		//URL prod
+//	private String baseUrl = "https://www.melbourneit.com.au/";		//URL prod
     
 	@BeforeTest
 	public void BeforeTest() {
@@ -48,7 +48,7 @@ public class RetailWebTest {
         CompletePage = new CompletePage();
         logOutPage = new LogoutPage();
         
-        System.out.println("-------------BeforeTest--------------");
+        System.out.println("-------------Register Domain Start--------------");
         
         Properties prop = new Properties();
     	InputStream input = null;
@@ -100,11 +100,11 @@ public class RetailWebTest {
  * Register domain name test
  * 
  ********************************************************************************************/
-	@Test(dataProvider = "GetDomain",priority = 0)
+	@Test(dataProvider = "GetDomain")
 	public void RegisterDomain(int number, String domainName){
 	
 		//Search domain page
-	     System.out.println("-------------------"+number+"-"+domainName+"-------------------------");
+	     System.out.println("-------------------"+number+"-Register-"+domainName+"-------------------------");
 		searchPage.searchDomain(driver, domainName);
 	     System.out.println("search page");
 
@@ -138,7 +138,7 @@ public class RetailWebTest {
 
 	@AfterClass
 	public void afterClass() {
-		System.out.println("AfterTest");
+		System.out.println("Register Domain End");
 		driver.quit();
 	}
 }

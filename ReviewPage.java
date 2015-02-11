@@ -23,5 +23,6 @@ public class ReviewPage {
 			}
 		    driver.findElement(By.cssSelector("span.bold-text")).click();
 		}
+		
 	}
 }

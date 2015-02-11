@@ -2,12 +2,16 @@ package RegisterdomainName;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.regex.Pattern;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
+
+import static org.junit.Assert.*;
 
 public class PaymentPage extends Page {
 	public void PaybyCredit(WebDriver driver, String baseUrl){
@@ -44,6 +48,23 @@ public class PaymentPage extends Page {
 	    driver.findElement(By.id("cc_name")).sendKeys("test");
 	    driver.findElement(By.xpath("//form[@id='frmPaymentDetails']/dl/div[2]/label/span")).click();
 	    driver.findElement(By.id("submit-order")).click();
-	    assertEquals("Thank you for your order", driver.findElement(By.cssSelector("h1")).getText());	    
+	    
+//		try {
+		    assertEquals("Thank you for your order", driver.findElement(By.cssSelector("h1")).getText());	    
+//		} catch (Exception e) {
+//			System.out.println("renew failed");
+//		}
+
+	}
+	
+	// Payment simple one
+	public void paymentsimple(WebDriver driver){
+		driver.findElement(By.name("cardverificationcode1")).clear();
+		driver.findElement(By.name("cardverificationcode1")).sendKeys("123");
+		driver.findElement(By.id("tandc")).click();
+		driver.findElement(By.cssSelector("div.a-button-flexi")).click();
+		// completed page "Thank you taka!"
+//		assertTrue(Pattern.compile(" [Thank you][a-zA-Z!]").matcher(driver.findElement(By.cssSelector("div.account-pagetitle.rm-left-indent")).getText()).find());
+	    assertTrue(Pattern.compile("Thank you \\b[a-z0-9!@#$]+\\b").matcher(driver.findElement(By.cssSelector("div.account-pagetitle.rm-left-indent")).getText()).find());
 	}
 }

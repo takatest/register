@@ -44,17 +44,17 @@ public class SearchDomainPage extends Page {
 		// driver.findElement(By.cssSelector("h2.ng-binding.positive")).getText());
 		// // is available
 		WebElement we = driver.findElement(btn);
-		we.click(); // add button
+		we.click(); // add to Cart button
 	}
 
 	/* 
 	 * create Domain name
 	 */
 	public String CreateDomainName(String domainSpace) {
-
+		// crate date object
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
 		String today = formatter.format( new java.util.Date() );
-
+		// crate unique id
 		int unique_num = (int) (Math.random() * 50 + 1);
 		String domainName = "takatest" + today + unique_num + domainSpace;
 

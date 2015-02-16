@@ -1,5 +1,7 @@
 package RegisterdomainName;
 
+import static org.junit.Assert.assertEquals;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,5 +19,17 @@ public class CompletePage {
 		}else{
 			System.out.println("Error!!!");
 		}
+	}
+	
+	public void newComplete(WebDriver driver){
+	    
+		// wait
+		try {
+			Thread.sleep(30000);	// wait 5 second
+		} catch (InterruptedException e) {
+			System.out.println("10 second gone!!");
+		}
+		assertEquals("Order Complete", driver.findElement(By.cssSelector("h1")).getText());
+		System.out.println("Payment page end");
 	}
 }

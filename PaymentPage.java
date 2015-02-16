@@ -67,4 +67,24 @@ public class PaymentPage extends Page {
 //		assertTrue(Pattern.compile(" [Thank you][a-zA-Z!]").matcher(driver.findElement(By.cssSelector("div.account-pagetitle.rm-left-indent")).getText()).find());
 	    assertTrue(Pattern.compile("Thank you \\b[a-z0-9!@#$]+\\b").matcher(driver.findElement(By.cssSelector("div.account-pagetitle.rm-left-indent")).getText()).find());
 	}
+	
+	// new payment page
+	public void newpayment(WebDriver driver){
+		// wait
+		try {
+			Thread.sleep(5000);	// wait 5 second
+		} catch (InterruptedException e) {
+			System.out.println("10 second gone!!");
+		}
+		
+		driver.findElement(By.id("number")).clear();
+	    driver.findElement(By.id("number")).sendKeys("4111111111111111");
+	    driver.findElement(By.id("cvv")).clear();
+	    driver.findElement(By.id("cvv")).sendKeys("123");
+	    new Select(driver.findElement(By.id("expiryMonth"))).selectByVisibleText("07");
+	    new Select(driver.findElement(By.id("expiryYear"))).selectByVisibleText("2022");
+	    driver.findElement(By.id("name")).clear();
+	    driver.findElement(By.id("name")).sendKeys("tester");
+	    driver.findElement(By.cssSelector("button.btn.red")).click();
+	}
 }

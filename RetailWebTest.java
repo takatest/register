@@ -5,12 +5,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.junit.Ignore;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
+
+import ManageDomain.CheckDomainSpace;
 
 
 public class RetailWebTest {
@@ -19,18 +22,19 @@ public class RetailWebTest {
 	private FirefoxDriver 					driver;					// firefox driver
 	private String 							myaccount;				// my account			property
 	private String 							password;				// my account password	property
-    private static int						domain_num = 1;			// number of domain
-	private static String[] 				domain_space = {".com",".com",".org",".melborne",".info",".camera"};// domain space
-    private static SearchDomainPage 		searchPage;				// search domain page
-    
+    private static int						domain_num = 3;			// number of domain
+	private static String[] 				domain_space = {".melbourne",".net",".biz",".melborne",".info",".camera"};// domain space
+   
+	private static SearchDomainPage 		searchPage;				// search domain page
     private static LoginPage 	 			loginPage;				// login page
     private static ReviewPage				ReviewPage;				// Review page
     private static PaymentPage				PaymentPage;			// Payment page
     private static CompletePage				CompletePage;			// Complete page
     private static LogoutPage				logOutPage;				// Log out page
     private static EligibilityDetailsPage	EligibilityDetailsPage;	// Eligibity AU page
-    
-    
+    private static oldandnewflow			oldandnewflow;			// old cart flow
+    private static CheckDomainSpace			CheckDomainSpace;		// check if domain space can support private reg or not
+    private static int						newcount = 0;			// counter for new cart
 	private String baseUrl = "https://stage.melbourneit.com.au/";		//URL stage
 //	private String baseUrl = "https://www.melbourneit.com.au/";		//URL prod
     
@@ -47,6 +51,9 @@ public class RetailWebTest {
         PaymentPage = new PaymentPage();
         CompletePage = new CompletePage();
         logOutPage = new LogoutPage();
+        oldandnewflow = new oldandnewflow();
+        CheckDomainSpace = new CheckDomainSpace();
+        
         
         System.out.println("-------------Register Domain Start--------------");
         
@@ -100,7 +107,8 @@ public class RetailWebTest {
  * Register domain name test
  * 
  ********************************************************************************************/
-	@Test(dataProvider = "GetDomain")
+
+	@Test(dataProvider = "GetDomain",enabled =false)
 	public void RegisterDomain(int number, String domainName){
 	
 		//Search domain page
@@ -108,6 +116,7 @@ public class RetailWebTest {
 		searchPage.searchDomain(driver, domainName);
 	     System.out.println("search page");
 
+/// same until above	     
     	//login page
 		loginPage.loginmyaccount(driver,baseUrl, myaccount, password);
 	    System.out.println("log into My account end");
@@ -136,9 +145,28 @@ public class RetailWebTest {
 		System.out.println("Yeah success!!");
 	}
 
+	@Test(dataProvider = "GetDomain")
+	public void RegisterDomain2(int number, String domainName){
+	
+		//Search domain page
+	     System.out.println("-------------------"+number+"-Register-"+domainName+"-------------------------");
+		searchPage.searchDomain(driver, domainName);
+
+		if ( CheckDomainSpace.newshopcart(domainName) == true){
+			/// new flow
+			System.out.println("new view cart flow");
+	        oldandnewflow.newcart(newcount,driver, domainName, baseUrl, myaccount, password, year);
+	        newcount++;
+	        System.out.println("old cart counter =" + newcount);
+		}else{
+	        System.out.println("old view cart flow");
+	        oldandnewflow.oldcart(driver, domainName, baseUrl, myaccount, password, year);
+		}
+	}
+	
 	@AfterClass
 	public void afterClass() {
-		System.out.println("Register Domain End");
+		System.out.println("Register Domain Completed");
 		driver.quit();
 	}
 }

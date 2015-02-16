@@ -16,6 +16,8 @@ public class LoginPage extends Page {
 		
 		String url2 = baseUrl+"domain-search/available/";			// prod
 	//	String url2 = baseUrl+"domain-search/";						// stage
+
+		// if go to hosting option page, click one step before login to my account
 		if (url.equals(url2)){
 			System.out.println("Enter Hosting page");
 			driver.findElement(By.cssSelector("button.btn-continue")).click();
@@ -39,5 +41,25 @@ public class LoginPage extends Page {
 	    driver.findElement(By.id("password")).sendKeys(passsword);
 	    driver.findElement(By.id("submit")).click();
 	}
-	
+
+	public void newlogin(WebDriver driver) {
+		// wait
+		try {
+			Thread.sleep(3000);	// wait 10 second
+		} catch (InterruptedException e) {
+			System.out.println("10 second gone!!");
+		}
+		driver.findElement(By.cssSelector("form[name=\"loginForm\"] > div > div.element-group > #username")).clear();
+	    driver.findElement(By.cssSelector("form[name=\"loginForm\"] > div > div.element-group > #username")).sendKeys("takaexprice");
+	    driver.findElement(By.cssSelector("form[name=\"loginForm\"] > div > div.element-group > #password")).clear();
+	    driver.findElement(By.cssSelector("form[name=\"loginForm\"] > div > div.element-group > #password")).sendKeys("password");
+	    driver.findElement(By.cssSelector("div > div.element-group.cta > button.btn.red")).click();
+	 
+		System.out.println("login to my account end");
+	}
+	public void newloginagain(WebDriver driver){
+		// continue
+		driver.findElement(By.xpath("//button[@type='button']")).click();
+		System.out.println("Returning Customer end");
+	}
 }

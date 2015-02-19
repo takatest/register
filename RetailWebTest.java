@@ -108,7 +108,7 @@ public class RetailWebTest {
  * Register domain name test
  * 
  ********************************************************************************************/
-
+	// old shopping cart only
 	@Test(dataProvider = "GetDomain",enabled =false)
 	public void RegisterDomain(int number, String domainName){
 	
@@ -146,6 +146,7 @@ public class RetailWebTest {
 		System.out.println("Yeah success!!");
 	}
 
+	// new shopping cart and also old shopping cart version
 	@Test(dataProvider = "GetDomain")
 	public void RegisterDomain2(int number, String domainName){
 	

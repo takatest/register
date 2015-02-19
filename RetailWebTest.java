@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import org.junit.Ignore;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -22,8 +21,10 @@ public class RetailWebTest {
 	private FirefoxDriver 					driver;					// firefox driver
 	private String 							myaccount;				// my account			property
 	private String 							password;				// my account password	property
-    private static int						domain_num = 3;			// number of domain
-	private static String[] 				domain_space = {".melbourne",".net",".biz",".melborne",".info",".camera"};// domain space
+	private String 							myaccountex ="TAKAEXPRICE";	// my account			currently use external
+	private String 							passwordex = "password";	// my account password	external
+    private static int						domain_num = 1;			// number of domain
+	private static String[] 				domain_space = {".bike",".net",".camera",".melborne",".info",".camera"};// domain space
    
 	private static SearchDomainPage 		searchPage;				// search domain page
     private static LoginPage 	 			loginPage;				// login page
@@ -155,9 +156,9 @@ public class RetailWebTest {
 		if ( CheckDomainSpace.newshopcart(domainName) == true){
 			/// new flow
 			System.out.println("new view cart flow");
-	        oldandnewflow.newcart(newcount,driver, domainName, baseUrl, myaccount, password, year);
+	        oldandnewflow.newcart(newcount,driver, domainName, baseUrl, myaccountex, passwordex, year);
 	        newcount++;
-	        System.out.println("old cart counter =" + newcount);
+	        System.out.println("new cart counter =" + newcount);
 		}else{
 	        System.out.println("old view cart flow");
 	        oldandnewflow.oldcart(driver, domainName, baseUrl, myaccount, password, year);

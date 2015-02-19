@@ -1,10 +1,11 @@
 package RegisterdomainName;
 
 import org.openqa.selenium.WebDriver;
+import ManageDomain.CheckDomainSpace;
 
 public class oldandnewflow {
 		
-		private static SearchDomainPage 		searchPage = new SearchDomainPage();			// search domain page
+//		private static SearchDomainPage 		searchPage = new SearchDomainPage();			// search domain page
 		private static LoginPage 	 			loginPage = new LoginPage();					// login page
 	    private static ReviewPage				ReviewPage = new ReviewPage();					// Review page
 	    private static PaymentPage				PaymentPage = new PaymentPage();				// Payment page
@@ -14,7 +15,9 @@ public class oldandnewflow {
 	    
 	    private static newshopcartpage			newshoppage = new newshopcartpage();			// new shopping cart page
 	    private static OptionPage				optionpage	= new OptionPage();					// option page
-
+	    private static CheckDomainSpace			CheckDomainSpace = new CheckDomainSpace();		// check domain space		
+	    private static EligibilityDetailsPage	EligibilityDetailsPage = new EligibilityDetailsPage();// Eligiblity AU
+	    
 	    private static int 						privateregflag = 0; 							// 0 = off, 1 = on for private reg
 	    
 	public void oldcart(WebDriver driver, String domainName, String baseUrl, String myaccount, String password, int year){
@@ -49,24 +52,31 @@ public class oldandnewflow {
 
 		// Items in your Cart
 		newshoppage.item(driver, year);
-		if ( number == 0 ){
-			loginPage.newlogin(driver);				// login my account	first time
+		if ( number == 0 ){												// if login to first time
+			loginPage.newlogin(driver,myaccount,password);				// login to my account
 		}else{
-			loginPage.newloginagain(driver);		// use same my account
+			loginPage.newloginagain(driver);							// if not login to first time, use same my account
 		}
-		// option1 private registration 0 = off, 1 = on
-		optionpage.options1(driver, privateregflag);
-		
-		// option2 Upgrade options - Web Hosting
-		optionpage.options2(driver);
-
-		// option3 SiteLock Web site Security
-		optionpage.options3(driver);
-		
+		// if AU domain, enter Eligibility details
+		if (CheckDomainSpace.audomain(domainName)== true){
+			EligibilityDetailsPage.newEligiblityau(driver);
+			// option2 Upgrade options - Web Hosting
+			optionpage.options2au(driver);
+			// option3 SiteLock Web site Security
+			optionpage.options3au(driver);
+		}else{
+			// option1 private registration 0 = off, 1 = on
+			optionpage.options1(driver, privateregflag);
+			
+			// option2 Upgrade options - Web Hosting
+			optionpage.options2(driver);
+	
+			// option3 SiteLock Web site Security
+			optionpage.options3(driver);
+		}
 		// new payment page
 		PaymentPage.newpayment(driver);
 		// complete page
 		CompletePage.newComplete(driver);
-		
 	}
 }

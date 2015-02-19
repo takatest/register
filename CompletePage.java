@@ -10,7 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class CompletePage {
 	
 	public void CompleteSuccess(WebDriver driver){
-    
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.a-button-green")));
 		
@@ -22,7 +21,6 @@ public class CompletePage {
 	}
 	
 	public void newComplete(WebDriver driver){
-	    
 		// wait
 		try {
 			Thread.sleep(30000);	// wait 5 second

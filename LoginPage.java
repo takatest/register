@@ -9,6 +9,7 @@ public class LoginPage extends Page {
 
 	private String baseUrl;
 	private String url;
+    private static OptionPage				optionpage	= new OptionPage();					// option page
 
 	public void loginmyaccount(WebDriver driver, String baseUrl, String myaccount, String password) {
 		//https://www.melbourneit.com.au/domain-search/available/
@@ -19,8 +20,9 @@ public class LoginPage extends Page {
 
 		// if go to hosting option page, click one step before login to my account
 		if (url.equals(url2)){
-			System.out.println("Enter Hosting page");
-			driver.findElement(By.cssSelector("button.btn-continue")).click();
+			System.out.println("Enter Hosting page");					// old option page
+			optionpage.oldoption(driver);
+//			driver.findElement(By.cssSelector("button.btn-continue")).click();
 		}
 		 WebDriverWait wait = new WebDriverWait(driver, 50);
 		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("log_username")));
@@ -42,7 +44,7 @@ public class LoginPage extends Page {
 	    driver.findElement(By.id("submit")).click();
 	}
 
-	public void newlogin(WebDriver driver) {
+	public void newlogin(WebDriver driver, String myaccount, String password) {
 		// wait
 		try {
 			Thread.sleep(3000);	// wait 10 second
@@ -50,9 +52,9 @@ public class LoginPage extends Page {
 			System.out.println("10 second gone!!");
 		}
 		driver.findElement(By.cssSelector("form[name=\"loginForm\"] > div > div.element-group > #username")).clear();
-	    driver.findElement(By.cssSelector("form[name=\"loginForm\"] > div > div.element-group > #username")).sendKeys("takaexprice");
+	    driver.findElement(By.cssSelector("form[name=\"loginForm\"] > div > div.element-group > #username")).sendKeys(myaccount);
 	    driver.findElement(By.cssSelector("form[name=\"loginForm\"] > div > div.element-group > #password")).clear();
-	    driver.findElement(By.cssSelector("form[name=\"loginForm\"] > div > div.element-group > #password")).sendKeys("password");
+	    driver.findElement(By.cssSelector("form[name=\"loginForm\"] > div > div.element-group > #password")).sendKeys(password);
 	    driver.findElement(By.cssSelector("div > div.element-group.cta > button.btn.red")).click();
 	 
 		System.out.println("login to my account end");

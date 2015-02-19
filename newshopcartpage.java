@@ -7,7 +7,6 @@ public class newshopcartpage {
 	
 	//Items in Your Cart page
 	public void item(WebDriver driver, int year){
-	
 		// wait
 		try {
 			Thread.sleep(3000);	// wait 10 second

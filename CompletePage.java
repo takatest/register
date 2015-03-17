@@ -2,6 +2,8 @@ package RegisterdomainName;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -27,6 +29,9 @@ public class CompletePage {
 		} catch (InterruptedException e) {
 			System.out.println("10 second gone!!");
 		}
+		
+//		driver.manage().timeouts().implicitlyWait(50000, TimeUnit.SECONDS);
+		
 		assertEquals("Order Complete", driver.findElement(By.cssSelector("h1")).getText());
 		System.out.println("Payment page end");
 	}

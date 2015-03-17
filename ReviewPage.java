@@ -16,8 +16,12 @@ public class ReviewPage {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("selectyear")));
 			if ( year == 1){
 				driver.findElement(By.xpath("//select/option[text()='1 Year']")).click();
-			}else if ( year == 2){
+			}else if ( year == 2){															// 2 years
 			    driver.findElement(By.xpath("//select/option[text()='2 Years']")).click();
+			}else if ( year == 5 ){
+				driver.findElement(By.xpath("//select/option[text()='5 Years']")).click();
+			}else if ( year == 10 ){
+				driver.findElement(By.xpath("//select/option[text()='10 Years']")).click();
 			}
 			// wait
 			try {

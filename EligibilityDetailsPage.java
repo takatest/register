@@ -1,5 +1,7 @@
 package RegisterdomainName;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -30,6 +32,8 @@ public class EligibilityDetailsPage {
 			Thread.sleep(5000);	// wait 3 second
 		} catch (InterruptedException e) {
 		}
+//		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		
 		driver.findElement(By.id("busName")).clear();
 	    driver.findElement(By.id("busName")).sendKeys("MELBOURNE IT SERVICES");
 	    driver.findElement(By.id("busNoValue")).clear();

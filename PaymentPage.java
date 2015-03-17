@@ -2,6 +2,7 @@ package RegisterdomainName;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
@@ -20,6 +21,7 @@ public class PaymentPage extends Page {
 	    driver.findElement(By.xpath("(//input[@name='eccsid'])[1]")).click();
 	    driver.findElement(By.name("cardverificationcode1")).clear();
 	    driver.findElement(By.name("cardverificationcode1")).sendKeys("123");
+	    driver.findElement(By.id("autorenewal")).click();											// set up auto renewa
 	    driver.findElement(By.id("tandc")).click();
 	    driver.findElement(By.cssSelector("div.a-button-flexi")).click();
 	}
@@ -48,6 +50,7 @@ public class PaymentPage extends Page {
 		driver.findElement(By.name("cardverificationcode1")).clear();
 		driver.findElement(By.name("cardverificationcode1")).sendKeys("123");
 		driver.findElement(By.id("tandc")).click();
+	    driver.findElement(By.id("autorenewal")).click();										// set up auto renewal
 		driver.findElement(By.cssSelector("div.a-button-flexi")).click();
 		// completed page "Thank you taka!"
 	    assertTrue(Pattern.compile("Thank you \\b[a-z0-9!@#$]+\\b").matcher(driver.findElement(By.cssSelector("div.account-pagetitle.rm-left-indent")).getText()).find());
@@ -61,7 +64,10 @@ public class PaymentPage extends Page {
 		} catch (InterruptedException e) {
 			System.out.println("10 second gone!!");
 		}
-		driver.findElement(By.id("number")).clear();
+
+//		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+
+		driver.findElement(By	.id("number")).clear();
 	    driver.findElement(By.id("number")).sendKeys("4111111111111111");
 	    driver.findElement(By.id("cvv")).clear();
 	    driver.findElement(By.id("cvv")).sendKeys("123");

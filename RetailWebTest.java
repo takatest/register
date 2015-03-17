@@ -17,14 +17,14 @@ import ManageDomain.CheckDomainSpace;
 
 public class RetailWebTest {
 
-	private int 							year = 1;				// year 1,2
-	private FirefoxDriver 					driver;					// firefox driver
+	private int 							year = 1;				// year 1,2,3,5,10
+	private FirefoxDriver 					driver;					// FireFox driver
 	private String 							myaccount;				// my account			property
 	private String 							password;				// my account password	property
-	private String 							myaccountex ="TAKAEXPRICE";	// my account			currently use external
+	private String 							myaccountex ="TAKAEXAUTO";	// my account			currently use external
 	private String 							passwordex = "password";	// my account password	external
-    private static int						domain_num = 1;			// number of domain
-	private static String[] 				domain_space = {".bike",".net",".camera",".melborne",".info",".camera"};// domain space
+    private static int						domain_num = 2;			// number of domain
+	private static String[] 				domain_space = {".net",".org",".camera",".melborne",".info",".camera"};// domain space
    
 	private static SearchDomainPage 		searchPage;				// search domain page
     private static LoginPage 	 			loginPage;				// login page
@@ -32,7 +32,7 @@ public class RetailWebTest {
     private static PaymentPage				PaymentPage;			// Payment page
     private static CompletePage				CompletePage;			// Complete page
     private static LogoutPage				logOutPage;				// Log out page
-    private static EligibilityDetailsPage	EligibilityDetailsPage;	// Eligibity AU page
+    private static EligibilityDetailsPage	EligibilityDetailsPage;	// Eligibility AU page
     private static oldandnewflow			oldandnewflow;			// old cart flow
     private static CheckDomainSpace			CheckDomainSpace;		// check if domain space can support private reg or not
     private static int						newcount = 0;			// counter for new cart
@@ -55,7 +55,6 @@ public class RetailWebTest {
         oldandnewflow = new oldandnewflow();
         CheckDomainSpace = new CheckDomainSpace();
         
-        
         System.out.println("-------------Register Domain Start--------------");
         
         Properties prop = new Properties();
@@ -70,9 +69,8 @@ public class RetailWebTest {
     		// get the property value and print it out
     		myaccount = prop.getProperty("myaccount");
       		password = prop.getProperty("password");
-      		System.out.println("My account - " + myaccount);
-    		System.out.println("My account PW - " + password);
-    	     
+      		System.out.println("My account = " + myaccount);
+    		System.out.println("My account PW = " + password);
     	} catch (IOException ex) {
     		ex.printStackTrace();
     	} finally {
@@ -84,6 +82,7 @@ public class RetailWebTest {
     			}
     		}
     	}
+  		System.out.println("Year = " + year);
 	}
 
 	@BeforeMethod
@@ -108,7 +107,11 @@ public class RetailWebTest {
  * Register domain name test
  * 
  ********************************************************************************************/
-	// old shopping cart only
+/***************************************************************************************
+ * 
+ * 	// old shopping cart only
+ * 
+****************************************************************************************/	
 	@Test(dataProvider = "GetDomain",enabled =false)
 	public void RegisterDomain(int number, String domainName){
 	
@@ -146,7 +149,11 @@ public class RetailWebTest {
 		System.out.println("Yeah success!!");
 	}
 
-	// new shopping cart and also old shopping cart version
+/***************************************************************************************
+ * 
+ * 	new shopping cart and also old shopping cart version
+ * 
+****************************************************************************************/
 	@Test(dataProvider = "GetDomain")
 	public void RegisterDomain2(int number, String domainName){
 	
